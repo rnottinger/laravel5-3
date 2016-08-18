@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\User;
 
 use App\User;
 use Validator;
@@ -27,8 +27,14 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/portal';
 
+    /**
+     * The register view.
+     *
+     * @var string
+     */
+    protected $registerView = 'auth.users.register';
     /**
      * Create a new controller instance.
      *
@@ -37,6 +43,16 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view($this->registerView);
     }
 
     /**

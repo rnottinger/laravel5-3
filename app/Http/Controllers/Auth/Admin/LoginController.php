@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -21,11 +21,35 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * The guard to use.
+     *
+     * @var string
+     */
+    protected $guard = 'admin';
+
+
+    /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
+
+    /**
+     * Where to redirect users after logout.
+     *
+     * @var string
+     */
+    protected $redirectAfterLogout = '/admin';
+
+
+    /**
+     * The login view.
+     *
+     * @var string
+     */
+    protected $loginView = 'auth.admins.login';
+
 
     /**
      * Create a new controller instance.
@@ -36,4 +60,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view($this->loginView);
+    }
+
 }

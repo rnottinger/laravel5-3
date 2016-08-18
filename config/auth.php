@@ -40,11 +40,19 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins'
+        ],
+//
+//        'api' => [
+//            'driver' => 'token',
+//            'provider' => 'users',
+//        ],
     ],
 
     /*
@@ -68,6 +76,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Customer::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,  // now create Model & Migration
         ],
 
         // 'users' => [
@@ -98,8 +114,22 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'email' => 'auth.users.password.email',  // view for password reset for customers
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
+            'email' => 'auth.customers.password.email',  // view for password reset for customers
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'email' => 'auth.admins.password.email',  // view for password reset for admins
+            'table' => 'password_resets',
+            'expire' => 60,
+
         ],
     ],
 

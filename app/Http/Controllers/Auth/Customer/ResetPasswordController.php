@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -19,6 +19,33 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
+
+    /**
+     * @var string
+     */
+    protected $redirectTo = '/portal';
+
+    /**
+     * The reset view.
+     *
+     * @var string
+     */
+    protected $resetView = 'auth.customers.passwords.reset';
+
+    /**
+     * The email request.
+     *
+     * @var string
+     */
+    protected $linkRequestView = 'auth.customers.passwords.email';
+
+    /**
+     * The broker to use.
+     *
+     * @var string
+     */
+    protected $broker = 'customers';
+
 
     /**
      * Create a new controller instance.
