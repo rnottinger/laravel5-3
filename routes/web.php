@@ -26,6 +26,10 @@ Route::get('/relations', function () {
     return "relations";
 });
 
+
+Route::get('/legit', function () {
+    return "legit";
+});
 //Route::get('/', function () {
 ////    $user=User::first();
 ////    $lesson = Lesson::first();
