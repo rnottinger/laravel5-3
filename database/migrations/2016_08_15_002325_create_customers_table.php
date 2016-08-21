@@ -20,9 +20,9 @@ class CreateCustomersTable extends Migration
             $table->string('email')->unique();
             $table->string('password',60);
             $table->text('details')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

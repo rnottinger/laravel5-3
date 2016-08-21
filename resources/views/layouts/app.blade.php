@@ -49,8 +49,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        {{--<li><a href="{{ url('/legit') }}">Login</a></li>--}}
+                        @yield('login_link')
+{{--                        <li><a href="{{ url('/register') }}">Register</a></li>--}}
+                        @yield('register_link')
                     @else
 
                         @if (auth()->guard('web')->check())

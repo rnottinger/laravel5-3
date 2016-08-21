@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('register_link')
+    <li><a href="{{ url('auth/portal/register') }}">Register</a></li>
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

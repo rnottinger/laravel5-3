@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => "Richard's Mule Training",
+    'name' => "Laravel 5.3 config.app.name",
 
     /*
     |--------------------------------------------------------------------------

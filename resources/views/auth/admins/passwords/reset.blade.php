@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@section('login_link')
+    <li>Test Login</li>
+    {{--<li><a href="{{ url('auth/admin/login') }}">Login</a></li>--}}
+@endsection
+@section('register_link')
+    {{--<li><a href="{{ url('auth/admin/register') }}">Register</a></li>--}}
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -8,7 +14,7 @@
                 <div class="panel-heading">Reset Password</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/reset') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/admin/password/reset') }}">
                         {{ csrf_field() }}
 
                         <input type="hidden" name="token" value="{{ $token }}">

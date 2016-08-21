@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@section('login_link')
+    {{--<li>Test Login</li>--}}
+    <li><a href="{{ url('auth/relations/login') }}">Login</a></li>
+@endsection
+@section('register_link')
+    <li><a href="{{ url('auth/relations/register') }}">Register</a></li>
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

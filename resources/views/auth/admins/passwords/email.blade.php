@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@section('login_link')
+{{--<li>Test Login</li>--}}
+<li><a href="{{ url('auth/admin/login') }}">Login</a></li>
+@endsection
+@section('register_link')
+    <li><a href="{{ url('auth/admin/register') }}">Register</a></li>
+@endsection
 <!-- Main Content -->
 @section('content')
 <div class="container">
@@ -14,7 +20,7 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/email') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/admin/password/email') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

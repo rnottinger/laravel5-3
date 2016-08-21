@@ -20,31 +20,21 @@ class ResetPasswordController extends Controller
 
     use ResetsPasswords;
 
-    /**
-     * @var string
-     */
-    protected $redirectTo = '/portal';
 
+    protected $guard = 'admin';
+    protected $broker = 'admins';
     /**
-     * The reset view.
-     *
      * @var string
      */
-    protected $resetView = 'auth.customers.passwords.reset';
+    protected $redirectTo = '/admin';
+
 
     /**
      * The email request.
      *
      * @var string
      */
-    protected $linkRequestView = 'auth.customers.passwords.email';
-
-    /**
-     * The broker to use.
-     *
-     * @var string
-     */
-    protected $broker = 'customers';
+    protected $linkRequestView = 'auth.admins.passwords.email';
 
 
     /**
@@ -55,5 +45,26 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Get the guard to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
+    }
+
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker($this->broker);
     }
 }
