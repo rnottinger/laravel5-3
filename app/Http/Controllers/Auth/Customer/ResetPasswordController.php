@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth\Customer;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {
@@ -26,14 +27,14 @@ class ResetPasswordController extends Controller
     /**
      * @var string
      */
-    protected $redirectTo = '/portal';
+    protected $redirectTo = '/relations';
 
     /**
      * The reset view.
      *
      * @var string
      */
-    protected $resetView = 'auth.customers.passwords.reset';
+//    protected $resetView = 'auth.customers.passwords.reset';
 
 
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
@@ -34,7 +36,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $linkRequestView = 'auth.admins.passwords.email';
+//    protected $linkRequestView = 'auth.admins.passwords.email';
 
 
     /**

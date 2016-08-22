@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
-use App\Customer;
-use App\User;
-use Validator;
+use App\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Validator;
 
 class RegisterController extends Controller
 {
@@ -23,6 +24,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    protected $guard = 'admin';
     /**
      * Where to redirect users after login / registration.
      *
@@ -88,5 +90,32 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
+
+    }
+
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $this->guard($this->guard)->login($this->create($request->all()));
+
+        return redirect($this->redirectPath());
     }
 }

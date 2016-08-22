@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -20,6 +21,7 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
+    protected $broker = 'users';
     /**
      * The reset view.
      *
@@ -45,5 +47,16 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
         return view($this->resetView);
+    }
+
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker($this->broker);
     }
 }

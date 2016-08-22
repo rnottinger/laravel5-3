@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -21,6 +23,12 @@ class ResetPasswordController extends Controller
     use ResetsPasswords;
 
     /**
+     * The guard to use.
+     *
+     * @var string
+     */
+    protected $guard = 'web';
+    /**
      * @var string
      */
     protected $redirectTo = '/relations';
@@ -30,14 +38,14 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $resetView = 'auth.users.passwords.reset';
+//    protected $resetView = 'auth.users.passwords.reset';
 
     /**
      * The email request.
      *
      * @var string
      */
-    protected $linkRequestView = 'auth.users.passwords.email';
+//    protected $linkRequestView = 'auth.users.passwords.email';
 
     /**
      * The broker to use.
@@ -54,5 +62,27 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
+    }
+
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker($this->broker);
     }
 }

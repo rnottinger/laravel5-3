@@ -17,18 +17,26 @@ use App\Notifications\SubscriptionCanceled;
 use App\User;
 
 // employee login endpoint
+Route::get('/admin',function() {
+//    return "admin";
+    return view('admin.home');
+})->middleware('auth:admin');
+
+// employee login endpoint
 Route::get('/portal',function() {
-    return "portal";
-});
+//    return "portal";
+    return view('user.home');
+})->middleware('auth:web');
 
 // customer login endpoint
 Route::get('/relations', function () {
     return "relations";
-});
+    return view('customer.home');
+})->middleware('auth:customer');
 
 
-Route::get('/legit', function () {
-    return "legit";
+Route::get('/', function () {
+    return view('home');
 });
 //Route::get('/', function () {
 ////    $user=User::first();

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth\Customer;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
@@ -35,7 +35,7 @@ class ForgotPasswordController extends Controller
      *
      * @var string
      */
-    protected $linkRequestView = 'auth.customers.passwords.email';
+//    protected $linkRequestView = 'auth.customers.passwords.email';
     /**
      * Create a new controller instance.
      *

@@ -47,6 +47,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+                    {{--<li>{{ auth()->guard('admin')->check() }}</li>--}}
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         {{--<li><a href="{{ url('/legit') }}">Login</a></li>--}}
@@ -54,13 +55,16 @@
 {{--                        <li><a href="{{ url('/register') }}">Register</a></li>--}}
                         @yield('register_link')
                     @else
-
-                        @if (auth()->guard('web')->check())
-                            <li>User</li>
-                        @endif
-                        @if (Auth::guard('customers')->check())
-                            <li>Customer</li>
-                        @endif
+                        {{--<li>blam</li>--}}
+                        {{--@if (auth()->guard('web')->check())--}}
+                            {{--<li>web guard</li>--}}
+                        {{--@endif--}}
+                        {{--@if (Auth::guard('customer')->check())--}}
+                            {{--<li>customers guard</li>--}}
+                        {{--@endif--}}
+                        {{--@if (Auth::guard('admin')->check())--}}
+                            {{--<li>Admins Guard</li>--}}
+                        {{--@endif--}}
 
                         <li class="dropdown">
 
@@ -68,19 +72,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
+                            @yield('logout_link')
                         </li>
                     @endif
                 </ul>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -35,11 +37,11 @@ class LoginController extends Controller
     protected $redirectTo = '/portal';
 
     /**
-     * Where to redirect users after logout.
+     * Route where to redirect users after logout.
      *
      * @var string
      */
-    protected $redirectAfterLogout = '/portal';
+    protected $redirectAfterLogout = '/auth/portal/login';
 
     /**
      * The login view.
@@ -66,5 +68,35 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view($this->loginView);
+    }
+
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
+    }
+
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+//        return redirect('/');
+        return redirect($this->redirectAfterLogout);
     }
 }
